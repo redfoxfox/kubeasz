@@ -70,6 +70,10 @@ roles/kube-master/
 
 可选，为后续使用基础认证的场景做准备，如实现dashboard 用不同用户名登陆绑定不同的权限，后续更新dashboard的实践文档。
 
+若未创建任何基础认证配置，K8S集群部署完毕后访问dashboard将会提示`401`错误。
+
+当前如需创建基础认证，需单独修改`roles/kube-master/defaults/main.yml`文件，将`BASIC_AUTH_ENABLE`改为`yes`，并相应配置用户名`BASIC_AUTH_USER`（默认用户名为`admin`）及密码`BASIC_AUTH_PASS`。
+
 ### 创建apiserver的服务配置文件
 
 ``` bash
@@ -194,7 +198,7 @@ WantedBy=multi-user.target
 
 ### 在master 节点安装 node 服务: kubelet kube-proxy 
 
-项目master 分支使用 DaemonSet 方式安装网络插件，如果master 节点不安装 kubelet 服务是无法安装网络插件的，如果 master 节点不安装网络插件，那么通过`apiserver` 方式无法访问 `dashboard` `kibana`等管理界面，[ISSUES #130](https://github.com/gjmzj/kubeasz/issues/130)
+项目master 分支使用 DaemonSet 方式安装网络插件，如果master 节点不安装 kubelet 服务是无法安装网络插件的，如果 master 节点不安装网络插件，那么通过`apiserver` 方式无法访问 `dashboard` `kibana`等管理界面，[ISSUES #130](https://github.com/easzlab/kubeasz/issues/130)
 
 项目v1.8 分支使用二进制方式安装网络插件，所以没有这个问题
 

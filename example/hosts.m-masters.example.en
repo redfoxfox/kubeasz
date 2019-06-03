@@ -43,7 +43,10 @@ DEPLOY_MODE=multi-master
 MASTER_IP="192.168.1.10"
 KUBE_APISERVER="https://{{ MASTER_IP }}:8443"
 
-# Network plugins supported: calico, flannel, kube-router, cilium
+# Cluster container-runtime supported: docker, containerd
+CONTAINER_RUNTIME="docker"
+
+# Network plugins supported: calico, flannel, kube-router, cilium, kube-ovn
 CLUSTER_NETWORK="flannel"
 
 # K8S Service CIDR, not overlap with node(host) networking

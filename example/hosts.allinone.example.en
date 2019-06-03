@@ -33,7 +33,10 @@ DEPLOY_MODE=allinone
 MASTER_IP="{{ groups['kube-master'][0] }}"
 KUBE_APISERVER="https://{{ MASTER_IP }}:6443"
 
-# Network plugins supported: calico, flannel, kube-router, cilium
+# Cluster container-runtime supported: docker, containerd
+CONTAINER_RUNTIME="docker"
+
+# Network plugins supported: calico, flannel, kube-router, cilium, kube-ovn
 CLUSTER_NETWORK="flannel"
 
 # K8S Service CIDR, not overlap with node(host) networking
